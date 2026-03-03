@@ -1,0 +1,130 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+  }
+
+.navbar { /*navigation bar styling*/
+    background-color: blue; 
+    font: 12px Verdana;
+    width: 100%;
+    font-weight: bold;
+    overflow: auto;
+}
+
+.navbar::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.navbar a {
+    float: left;  /*align the logo to the left*/
+    color: white;
+    text-align: center;
+    padding: 14px 14px;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    background-color: darkblue; /*change background color on hover*/
+}
+
+.navbar img {
+    margin: 10px;
+    width: 25px;
+    height: 25px;
+
+}
+
+.navbar_right {
+    float: right; /*align the rest of the navbar to the right*/
+}
+
+#main {
+    background-image: url("background.avif");
+    background-repeat: no-repeat;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.index_button {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20%;
+    text-align:center;
+}
+
+.index_button a {
+    font: 30px Verdana;
+    padding: 30px;
+    background-color: red;
+    color: white;
+    text-decoration: None;
+}
+
+.index_button a:hover {
+    background-color: darkred;
+}
+
+.register {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    padding-left: 30%;
+    text-align:left;
+}
+
+label {
+    font: 30px Verdana;
+    color: yellow;
+    font-weight: bold;
+}
+
+input[type=text] {
+    font-size: 30px;
+}
+
+#mediumPhotoGenerator {
+    display: none;
+}
+
+.mediumPhotoContainer { 
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(2, auto);
+    gap: 20px;   
+    width: 220px;
+}
+
+#mediumPhotoGenerator p {
+    font: 20px Verdana;
+    color: yellow;
+    font-weight: bold;
+}
+
+#mediumPhoto {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+}
+
+#mediumPhoto input {
+    margin-left: 45%;
+}
+
+#mediumPhoto img {
+    width: 100px;
+    height: 100px;
+}
+
+#mediumPhoto p {
+    bottom: 0;
+    font: 15px Verdana;
+    color: white;
+    font-weight: bold;
+}
