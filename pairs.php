@@ -50,10 +50,25 @@
                 <label for="complex"> complex </label> <br>
             </div>
         </div>
-
+        
+        <div class="game_status">
+            <div class="level">
+            </div>
+            <div class="score">
+            </div>
+            <div class="attempts">
+            </div>
+            <div class="time">
+            </div>
+            </div>
+        <div class="end_game">
+            <p> Too many attempts </p>
+            <a href="pairs.php">Play again</a>
+            <input id="submit" type="submit" value="Submit">
+        </div>
         <div class="game_screen">
             <div class="game_grid">
-            
+                
             </div>
         </div>
     </div>

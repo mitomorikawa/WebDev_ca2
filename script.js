@@ -58,11 +58,28 @@ function generateCards(matchSize, setCount, preset){
    let cardArray = [];
    if (preset) {
       // gametype: simple
-      cardArray = [[ "emoji/skin/green.png","emoji/eyes/closed.png", "emoji/mouth/open.png"],
-                   ["emoji/skin/red.png","emoji/eyes/laughing.png", "emoji/mouth/sad.png"] , 
-                   ["emoji/skin/yellow.png","emoji/eyes/long.png", "emoji/mouth/smiling.png"]];
+      cardArray = [[ "emoji/skin/green.png","emoji/eyes/closed.png", "emoji/mouth/open.png", 0],
+                   ["emoji/skin/red.png","emoji/eyes/laughing.png", "emoji/mouth/sad.png", 1] , 
+                   ["emoji/skin/yellow.png","emoji/eyes/long.png", "emoji/mouth/smiling.png", 2]];
    } else {
       // gametype: medium, complex
+      let indices = [] // numbers to generater indices of component photos
+      while (indices.length < setCount) {
+         let index = Math.floor(Math.random() * 108);
+         if (!indices.includes(index)) {
+            indices.push(index);
+         }
+      }
+
+      const skin = ["green", "red", "yellow"];
+      const eyes = ["closed", "laughing", "long", "normal", "rolling", "winking"];
+      const mouth = ["open", "sad", "smiling", "straight", "surprise", "teeth"];
+      for (let i = 0; i < setCount; i++) {
+         let skinIndex = Math.floor(indices[i] / 36);
+         let eyesIndex = Math.floor((indices[i] % 36) / 6);
+         let mouthIndex = indices[i] % 6;
+         cardArray.push(["emoji/skin/" + skin[skinIndex] + ".png", "emoji/eyes/" + eyes[eyesIndex]+ ".png", "emoji/mouth/" + mouth[mouthIndex]+ ".png", i]);
+      }
    }
 
    let finalCardArray = [];
@@ -76,24 +93,189 @@ function generateCards(matchSize, setCount, preset){
    return finalCardArray;
 }
 
-function startSimpleGame () {
-   let cardArray = generateCards(2, 3, true);
+// Function to display flippable cards (ref: https://dev.to/mugas/flip-cards-with-javascript-2ad0)
+function displayCards(cardArray, matchSize, setCount) {
    let gameGrid = document.querySelector(".game_grid");
    gameGrid.innerHTML = "";
-   for (let i = 0; i < 6; i++) {
+   for (let i = 0; i < matchSize*setCount; i++) {
       let card = document.createElement("div");
       card.classList.add("card");
+      let cardFront = document.createElement("div");
+      cardFront.classList.add("card_front");
+      card.appendChild(cardFront);
+      let cardBack = document.createElement("div");
+      cardBack.classList.add("card_back");
+      card.appendChild(cardBack);
       for (let j = 0; j < 3; j++) {
-         let cardImg = document.createElement("img");
-         cardImg.src = cardArray[i][j];
-         card.appendChild(cardImg);
+         let cardFrontImg = document.createElement("input");
+         cardFrontImg.type = "image";
+         cardFrontImg.src = cardArray[i][j];
+         cardFront.appendChild(cardFrontImg);
       }
-
       gameGrid.appendChild(card);
-   }
-   gameGrid.style.gridTemplateColumns = "repeat(3, auto)";
-   gameGrid.style.gridTemplateRows = "repeat(2, auto)";
-   gameGrid.style.gridAutoColumns = "100%"; 
 
+   }
+   gameGrid.style.gridTemplateColumns = `repeat(${setCount}, auto)`;
+   gameGrid.style.gridTemplateRows = `repeat(${matchSize}, auto)`;
+   gameGrid.style.gridAutoColumns = "100%"; 
+}
+
+function delay(time) {
+   return new Promise(resolve => setTimeout(resolve, time));
+ }
+
+/* 
+card states: back, front, matched
+
+1. click on a card when all the other cards arent flipped
+2. click on the same card twice
+3. two same cards
+4. two different cards
+5. click on a flipped card
+*/
+
+
+async function flipCard(cards, gameStatus, i, cardArray, matchSize, setCount, startTime, timer) {
+   const scoreDisplay = document.querySelector(".score");
+   const attemptsDisplay = document.querySelector(".attempts");
+   if (gameStatus.front === 0) {
+      if (gameStatus.card_status[i] === "back") {
+         gameStatus.card_status[i] = "front";
+         gameStatus.front++;
+         cards[i].classList.toggle("flip");
+      } 
+   } else {
+      if (gameStatus.card_status[i] === "back") {
+         let frontCardIndex = gameStatus.card_status.indexOf("front");
+         if (cardArray[frontCardIndex][3] == cardArray[i][3]) {
+            gameStatus.card_status[i] = "matched";
+            gameStatus.card_status[frontCardIndex] = "matched";
+            gameStatus.front = 0;
+            gameStatus.attempts++;
+            gameStatus.match++;
+            attemptsDisplay.innerHTML = "<p>Attempts: " + gameStatus.attempts + "</p>";
+            cards[i].classList.toggle("flip");
+            if (gameStatus.match === setCount) {
+               if (startTime) {
+                  let now = new Date().getTime();
+                  gameStatus.time = (now - startTime) / 1000 / 60;if (timer) {
+                     clearInterval(timer);
+                  }
+               }
+               scoreDisplay.innerHTML = "<p>Score: " + gameStatus.score().toFixed(2) + " </p>";
+               if (timer) {
+                  clearInterval(timer);
+               }
+               document.querySelector(".end_game").style.display = "flex";
+               document.querySelector(".end_game a").style.display = "flex";
+               document.querySelector(".end_game input").style.display = "flex";
+            }
+         } else {
+            gameStatus.card_status[i] = "back";
+            gameStatus.card_status[frontCardIndex] = "back";
+            gameStatus.front = 0;
+            gameStatus.attempts++;
+            attemptsDisplay.innerHTML = "<p>Attempts: " + gameStatus.attempts + "</p>";
+            cards[i].classList.toggle("flip");
+            await delay(1000);
+            cards[i].classList.toggle("flip");
+            cards[frontCardIndex].classList.toggle("flip");
+            if (gameStatus.attempts === (matchSize + 1) * setCount) {
+               if (timer) {
+                  clearInterval(timer);
+               }
+               document.querySelector(".end_game").style.display = "flex";
+               document.querySelector(".end_game a").style.display = "flex";
+               document.querySelector(".end_game p").style.display = "flex";
+            }
+         }
+      }
+   }
+   console.log(gameStatus.card_status);
+}
+
+
+
+function startSimpleGame () {
+   const matchSize = 2;
+   const setCount = 3;
+   let cardArray = generateCards(matchSize, setCount, true);
+   displayCards(cardArray, matchSize, setCount); 
+   document.querySelector(".game_status").style.display = "block";
+
+   
+   const gameStatus = {
+      card_status: ["back","back","back","back","back","back"],
+      front: 0,
+      match: 0,
+      attempts: 0,
+      time: 0,
+      score() {
+         return (100 - (this.attempts - setCount) / (matchSize*setCount) * 100) * Math.pow(0.5, this.time);
+      } 
+   }
+
+   const attemptsDisplay = document.querySelector(".attempts");
+   attemptsDisplay.innerHTML = "<p>Attempts: 0 </p>";
+
+
+   const cards = document.querySelectorAll(".card");
+   for (let i = 0; i < matchSize*setCount; i++){
+      cards[i].addEventListener("click", function() {
+         flipCard(cards, gameStatus, i, cardArray, 2, 3, 0, 0);
+      });
+   }
+
+
+   
+
+}
+
+function startMediumGame () {
+   let startTime = new Date().getTime();
+   const matchSize = 2;
+   const setCount = 5;
+   let cardArray = generateCards(matchSize, setCount, false);
+   displayCards(cardArray, matchSize, setCount); 
+   document.querySelector(".game_status").style.display = "block";
+
+   
+   const gameStatus = {
+      card_status: [],
+      front: 0,
+      match: 0,
+      attempts: 0,
+      time: 0,
+      score() {
+         return (100 - (this.attempts - setCount) / (matchSize*setCount) * 100) * Math.pow(0.5, this.time);
+      } 
+   }
+
+   for (let i = 0; i < matchSize*setCount; i++){
+      gameStatus.card_status.push("back");
+   }
+
+   const attemptsDisplay = document.querySelector(".attempts");
+   attemptsDisplay.innerHTML = "<p>Attempts: 0 </p>";
+   const timeDisplay = document.querySelector(".time");
+   timeDisplay.innerHTML = "<p>Time: 0m 0s </p>";
+   const timer = setInterval(function() {
+      let now = new Date().getTime();
+      let elapsedTime = Math.floor((now - startTime) / 1000);
+      let seconds = elapsedTime % 60;
+      let minutes = Math.floor(elapsedTime / 60);
+      timeDisplay.innerHTML = "<p>Time: " + minutes + "m " + seconds + "s </p>";
+   }, 1000);
+
+
+   const cards = document.querySelectorAll(".card");
+   for (let i = 0; i < matchSize*setCount; i++){
+      cards[i].addEventListener("click", function() {
+         flipCard(cards, gameStatus, i, cardArray, matchSize, setCount, startTime, timer);
+      });
+   }
+
+
+   
 
 }
