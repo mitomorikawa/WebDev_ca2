@@ -8,6 +8,7 @@
 <head>
     <title>register</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js"></script>
 </head>
 <body>
     <div class="navbar">
@@ -35,7 +36,26 @@
     </div>
 
     <div id="main">
-        
+        <div class="start_screen"> 
+            <div class="start_button">
+                <button onclick="startGame()">Start the game</button>
+            </div>
+            <div class="type_selection">
+                <h3>Select the game type </h3><br>
+                <input type="radio" name="type" value="simple" required>
+                <label for="simple"> simple </label> <br>
+                <input type="radio" name="type" value="medium" required>
+                <label for="medium"> medium </label> <br>
+                <input type="radio" name="type" value="complex" required>
+                <label for="complex"> complex </label> <br>
+            </div>
+        </div>
+
+        <div class="game_screen">
+            <div class="game_grid">
+            
+            </div>
+        </div>
     </div>
 </body>
 </html>

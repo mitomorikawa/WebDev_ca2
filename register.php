@@ -132,92 +132,32 @@ if (isset($_POST["submit"])){
                 <p> eyes </p>
                 <div class="complexPhotoContainer">
                     <div id="complexPhoto">
-                        <input type="radio" name="complexEyes" value="closed" onclick="setComplexPhoto()"
-                        <?php
-                            if (isset($_POST["avatar"])) {
-                                if ($_POST["avatar"]=="complex") {
-                                    echo " required";
-                                 } else {
-                                    echo "";
-                                }
-                            }
-                        ?>
-                        >
+                        <input type="radio" name="complexEyes" value="closed" onclick="setComplexPhoto()">
                         <img src="emoji/eyes/closed.png">
                         <p> closed </p>
                     </div>
                     <div id="complexPhoto">
-                        <input type="radio" name="complexEyes" value="laughing" onclick="setComplexPhoto()"
-                        <?php
-                            if (isset($_POST["avatar"])) {
-                                if ($_POST["avatar"]=="complex") {
-                                    echo " required";
-                                 } else {
-                                    echo "";
-                                }
-                            }
-                        ?>
-                        >
+                        <input type="radio" name="complexEyes" value="laughing" onclick="setComplexPhoto()">
                         <img src="emoji/eyes/laughing.png">
                         <p> laughing </p>
                     </div>
                     <div id="complexPhoto">
-                        <input type="radio" name="complexEyes" value="long" onclick="setComplexPhoto()" 
-                        <?php
-                            if (isset($_POST["avatar"])) {
-                                if ($_POST["avatar"]=="complex") {
-                                    echo " required";
-                                 } else {
-                                    echo "";
-                                }
-                            }
-                        ?>
-                        >
+                        <input type="radio" name="complexEyes" value="long" onclick="setComplexPhoto()">
                         <img src="emoji/eyes/long.png">
                         <p> long </p>
                     </div>
                     <div id="complexPhoto">
-                        <input type="radio" name="complexEyes" value="normal" onclick="setComplexPhoto()"
-                        <?php
-                            if (isset($_POST["avatar"])) {
-                                if ($_POST["avatar"]=="complex") {
-                                    echo " required";
-                                 } else {
-                                    echo "";
-                                }
-                            }
-                        ?>
-                        >
+                        <input type="radio" name="complexEyes" value="normal" onclick="setComplexPhoto()">
                         <img src="emoji/eyes/normal.png">
                         <p> normal </p>
                     </div>
                     <div id="complexPhoto">
-                        <input type="radio" name="complexEyes" value="rolling" onclick="setComplexPhoto()"
-                        <?php
-                            if (isset($_POST["avatar"])) {
-                                if ($_POST["avatar"]=="complex") {
-                                    echo " required";
-                                 } else {
-                                    echo "";
-                                }
-                            }
-                        ?>
-                        >
+                        <input type="radio" name="complexEyes" value="rolling" onclick="setComplexPhoto()">
                         <img src="emoji/eyes/rolling.png">
                         <p> rolling </p>
                     </div>
                     <div id="complexPhoto">
-                        <input type="radio" name="complexEyes" value="winking" onclick="setComplexPhoto()"
-                        <?php
-                            if (isset($_POST["avatar"])) {
-                                if ($_POST["avatar"]=="complex") {
-                                    echo " required";
-                                 } else {
-                                    echo "";
-                                }
-                            }
-                        ?>
-                        >
+                        <input type="radio" name="complexEyes" value="winking" onclick="setComplexPhoto()">
                         <img src="emoji/eyes/winking.png">
                         <p> winking </p>
                     </div>
@@ -226,92 +166,32 @@ if (isset($_POST["submit"])){
                 <p> mouth </p>
                 <div class="complexPhotoContainer">
                     <div id="complexPhoto">
-                        <input type="radio" name="complexMouth" value="open" onclick="setComplexPhoto()" 
-                        <?php
-                            if (isset($_POST["avatar"])) {
-                                if ($_POST["avatar"]=="complex") {
-                                    echo " required";
-                                 } else {
-                                    echo "";
-                                }
-                            }
-                        ?>
-                        >
+                        <input type="radio" name="complexMouth" value="open" onclick="setComplexPhoto()">
                         <img src="emoji/mouth/open.png">
                         <p> open </p>
                     </div>
                     <div id="complexPhoto">
-                        <input type="radio" name="complexMouth" value="sad" onclick="setComplexPhoto()"
-                        <?php
-                            if (isset($_POST["avatar"])) {
-                                if ($_POST["avatar"]=="complex") {
-                                    echo " required";
-                                 } else {
-                                    echo "";
-                                }
-                            }
-                        ?>
-                        >
+                        <input type="radio" name="complexMouth" value="sad" onclick="setComplexPhoto()">
                         <img src="emoji/mouth/sad.png">
                         <p> sad </p>
                     </div>
                     <div id="complexPhoto">
-                        <input type="radio" name="complexMouth" value="smiling" onclick="setComplexPhoto()"
-                        <?php
-                            if (isset($_POST["avatar"])) {
-                                if ($_POST["avatar"]=="complex") {
-                                    echo " required";
-                                 } else {
-                                    echo "";
-                                }
-                            }
-                        ?>
-                        >
+                        <input type="radio" name="complexMouth" value="smiling" onclick="setComplexPhoto()">
                         <img src="emoji/mouth/smiling.png">
                         <p> smiling </p>
                     </div>
                     <div id="complexPhoto">
-                        <input type="radio" name="complexMouth" value="straight" onclick="setComplexPhoto()" 
-                        <?php
-                            if (isset($_POST["avatar"])) {
-                                if ($_POST["avatar"]=="complex") {
-                                    echo " required";
-                                 } else {
-                                    echo "";
-                                }
-                            }
-                        ?>
-                        >
+                        <input type="radio" name="complexMouth" value="straight" onclick="setComplexPhoto()">
                         <img src="emoji/mouth/straight.png">
                         <p> straight </p>
                     </div>
                     <div id="complexPhoto">
-                        <input type="radio" name="complexMouth" value="surprise" onclick="setComplexPhoto()" 
-                        <?php
-                            if (isset($_POST["avatar"])) {
-                                if ($_POST["avatar"]=="complex") {
-                                    echo " required";
-                                 } else {
-                                    echo "";
-                                }
-                            }
-                        ?>
-                        >
+                        <input type="radio" name="complexMouth" value="surprise" onclick="setComplexPhoto()">
                         <img src="emoji/mouth/surprise.png">
                         <p> surprise </p>
                     </div>
                     <div id="complexPhoto">
-                        <input type="radio" name="complexMouth" value="teeth" onclick="setComplexPhoto()" 
-                        <?php
-                            if (isset($_POST["avatar"])) {
-                                if ($_POST["avatar"]=="complex") {
-                                    echo " required";
-                                 } else {
-                                    echo "";
-                                }
-                            }
-                        ?>
-                        >
+                        <input type="radio" name="complexMouth" value="teeth" onclick="setComplexPhoto()">
                         <img src="emoji/mouth/teeth.png">
                         <p> teeth </p>
                     </div>
@@ -320,47 +200,17 @@ if (isset($_POST["submit"])){
                 <p> skin </p>
                 <div class="complexPhotoContainer">
                     <div id="complexPhoto">
-                        <input type="radio" name="complexSkin" value="yellow" onclick="setComplexPhoto()" 
-                        <?php
-                            if (isset($_POST["avatar"])) {
-                                if ($_POST["avatar"]=="complex") {
-                                    echo " required";
-                                 } else {
-                                    echo "";
-                                }
-                            }
-                        ?>
-                        >
+                        <input type="radio" name="complexSkin" value="yellow" onclick="setComplexPhoto()">
                         <img src="emoji/skin/yellow.png">
                         <p> yellow </p>
                     </div>
                     <div id="complexPhoto">
-                        <input type="radio" name="complexSkin" value="green" onclick="setComplexPhoto()"
-                        <?php
-                            if (isset($_POST["avatar"])) {
-                                if ($_POST["avatar"]=="complex") {
-                                    echo " required";
-                                 } else {
-                                    echo "";
-                                }
-                            }
-                        ?>
-                        >
+                        <input type="radio" name="complexSkin" value="green" onclick="setComplexPhoto()">
                         <img src="emoji/skin/green.png">
                         <p> green </p>
                     </div>
                     <div id="complexPhoto">
-                        <input type="radio" name="complexSkin" value="red" onclick="setComplexPhoto()" 
-                        <?php
-                            if (isset($_POST["avatar"])) {
-                                if ($_POST["avatar"]=="complex") {
-                                    echo " required";
-                                 } else {
-                                    echo "";
-                                }
-                            }
-                        ?>
-                        >
+                        <input type="radio" name="complexSkin" value="red" onclick="setComplexPhoto()">
                         <img src="emoji/skin/red.png">
                         <p> red </p>
                     </div>

@@ -193,3 +193,85 @@ input[type=text] {
     font-weight: bold;
     text-align: center;
 }
+
+.start_screen {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 4%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20%;
+    width: 60%;
+}
+
+.start_button {
+    width:300px;
+    height: 130px;
+    margin-left: 0;
+    display: block;
+}
+
+.start_button button {
+    background-color: red;
+    border: none;
+    color: white;
+    font: 30px Verdana;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.start_button button:hover{
+    background-color: darkred;
+}
+
+.type_selection {
+    width: 300px;
+    margin-left: 100px;
+    white-space: nowrap;
+    overflow: visible;
+}
+
+.type_selection h3 {
+    font: 30px Verdana;
+    color: yellow;
+    font-weight: bold;
+    text-align: center;
+}
+
+.game_screen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(80%, 800px);
+    height: min(80%, 600px);
+    background-color: gray;
+}
+
+.game_grid {
+    
+    display: grid;
+    gap: 20px;
+    margin: 10%;
+}
+
+.card {
+    position: relative;
+    width: 50px;
+    height: 70px;
+    background-color: greenyellow;
+}
+
+.card img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+}

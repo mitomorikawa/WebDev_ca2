@@ -14,7 +14,13 @@ session_start();
 
         <?php 
             if (isset($_SESSION["photo"])){
-                echo "<img src=" . $_SESSION["photo"] . ">";
+                if (sizeof($_SESSION["photo"])==1){
+                    echo "<img src=" . $_SESSION["photo"][0] . ">";
+                } else if (sizeof($_SESSION["photo"])==3){
+                    echo "<img src=" . $_SESSION["photo"][0] . ">";
+                    echo "<img src=" . $_SESSION["photo"][1] . ">";
+                    echo "<img src=" . $_SESSION["photo"][2] . ">";
+                }
             }
         ?>
         <div class="navbar_right">
@@ -26,7 +32,6 @@ session_start();
             <?php endif; ?>
         </div>
     </div>
-
     <div id="main">
         
     </div>
