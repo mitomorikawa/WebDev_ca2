@@ -65,6 +65,7 @@
             <p> Too many attempts </p>
             <a href="pairs.php">Play again</a>
             <input id="submit" type="submit" value="Submit">
+            <button onclick="runComplexLevel();"> Next level </button>
         </div>
         <div class="game_screen">
             <div class="game_grid">

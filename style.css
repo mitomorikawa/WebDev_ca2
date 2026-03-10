@@ -284,7 +284,8 @@ input[type=text] {
 
 .end_game p,
 .end_game a,
-.end_game input {
+.end_game input,
+.end_game button {
     font: 30px Verdana;
     height: 100%;
     width: 40%;
@@ -297,7 +298,8 @@ input[type=text] {
 }
 
 .end_game a,
-.end_game input {
+.end_game input,
+.end_game button {
     background-color: red;
     color: white;
 }
@@ -308,7 +310,8 @@ input[type=text] {
 
 
 .end_game a:hover,
-.end_game input:hover{
+.end_game input:hover, 
+.end_game button:hover{
     background-color: darkred;
 }
 
