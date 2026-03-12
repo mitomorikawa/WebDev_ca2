@@ -32,9 +32,6 @@ session_start();
             <?php endif; ?>
         </div>
     </div>
-    <div id="main">
-        
-    </div>
 
     <div id="main" class="form">
         <?php if (isset($_SESSION["username"])): ?>

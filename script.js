@@ -139,6 +139,9 @@ async function flipCard(cards, gameStatus, i, cardArray, matchSize, setCount, st
    console.log("Card clicked:", cardArray[i][3]);
    const scoreDisplay = document.querySelector(".score");
    const attemptsDisplay = document.querySelector(".attempts");
+   const scoreInput = document.querySelector("#score_input");
+   const typeInput = document.querySelector("#type_input");
+   const levelInput = document.querySelector("#level_input");
    if (gameStatus.front === 0) {
       if (gameStatus.card_status[i] === "back") {
          gameStatus.card_status[i] = "front";
@@ -181,6 +184,8 @@ async function flipCard(cards, gameStatus, i, cardArray, matchSize, setCount, st
                   }
                }
                scoreDisplay.innerHTML = "<p>Score: " + gameStatus.score().toFixed(2) + " </p>";
+               typeInput.value = document.querySelector('input[name="type"]:checked').value;
+
                if (timer) {
                   clearInterval(timer);
                }
@@ -189,12 +194,23 @@ async function flipCard(cards, gameStatus, i, cardArray, matchSize, setCount, st
                document.querySelector(".end_game input").style.display = "flex";
                if (document.querySelector('input[name="type"]:checked').value==="complex" && complexLevel < 5) {
                   document.querySelector(".end_game button").style.display = "flex";
+                  document.querySelector(".complex_table").style.display = "flex";
+                  document.querySelector(`#level${complexLevel + 1}_cell`).innerHTML = gameStatus.score().toFixed(2);
                   scores.push(gameStatus.score());
+                  scoreInput.value = scores.join(",");
+                  levelInput.value = complexLevel + 1;
                   console.log(complexLevel);
                   complexLevel++;
                } else if (document.querySelector('input[name="type"]:checked').value==="complex" && complexLevel === 5) {
+                  document.querySelector("#level6_cell").innerHTML = gameStatus.score().toFixed(2);
+                  document.querySelector("#total_cell").innerHTML = scores.reduce((a, b) => a + b, 0).toFixed(2);
+                  document.querySelector(".complex_table").style.display = "flex";
                   scores.push(gameStatus.score());
-                  console.log("All scores:", scores);
+                  scoreInput.value = scores.join(",");
+                  levelInput.value = complexLevel + 1;
+               } else {
+                  scoreInput.value = gameStatus.score().toFixed(2);
+                  levelInput.value = 0;
                }
                return gameStatus.score();
             }
@@ -346,7 +362,10 @@ function ComplexGameLevel(matchSize,setCount, level) {
    for (let i = 0; i < matchSize*setCount; i++){
       gameStatus.card_status.push("back");
    }
-
+   const levelDisplay = document.querySelector(".level");
+   levelDisplay.innerHTML = "<p>Level: " + level + "</p>";
+   const scoreDisplay = document.querySelector(".score");
+   scoreDisplay.innerHTML = "<p>Score: </p>";
    const attemptsDisplay = document.querySelector(".attempts");
    attemptsDisplay.innerHTML = "<p>Attempts: 0 </p>";
    const timeDisplay = document.querySelector(".time");

@@ -241,6 +241,24 @@ input[type=text] {
     text-align: center;
 }
 
+.complex_table {
+    font: 20px Verdana;
+    color: yellow;
+    border-collapse: collapse;
+    display: none;
+    position: absolute;
+    top: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+}
+
+.complex_table th,
+.complex_table td {
+    border: 2px solid greenyellow;
+    padding: 5px;
+    text-align: center;
+}
 
 .game_status {
     display: none;
@@ -282,13 +300,22 @@ input[type=text] {
     align-items:center;
 }
 
+.end_game form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
 .end_game p,
 .end_game a,
 .end_game input,
 .end_game button {
     font: 30px Verdana;
-    height: 100%;
-    width: 40%;
+    height: 100px;
+    width: min(260px, 40%);
     margin: 10px;
     padding: auto;
     text-decoration: none;
@@ -374,4 +401,58 @@ input[type=text] {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
+}
+
+.score_board {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(80%, 1000px);
+    height: min(80%, 900px);
+    background-color: gray;
+}
+
+.score_board h3 {
+    font: 30px Verdana;
+    color: yellow;
+    font-weight: bold; 
+    margin: 10px;
+}
+
+.ranking {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 40%;
+}
+
+.ranking_table {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font: 15px Verdana;
+    color: yellow;
+    border-collapse: collapse;
+    width: auto;
+    margin-left: 30px;
+}
+
+.ranking_table p {
+    font: 15px Verdana;
+    font-weight: bold; 
+}
+
+.ranking_table th,
+.ranking_table td {
+    border: 2px solid greenyellow;
+    padding: 5px;
+    height: 20px;
+    text-align: center;
 }
